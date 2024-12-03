@@ -1,0 +1,52 @@
+﻿<Window x:Class="PRN212_Prj.OrderHistory"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PRN212_Prj"
+        mc:Ignorable="d"
+        Title="OrderHistory" Height="450" Width="900">
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Quản Lý Order" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Grid.Row="0" Margin="10"/>
+
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+
+
+            <ListView Grid.Column="1" Name="lvOrders" Margin="0,10,10,5">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="OrderID" DisplayMemberBinding="{Binding OrderId}" Width="60"/>
+                        <GridViewColumn Header="Customer" DisplayMemberBinding="{Binding Customer.Name}" Width="150"/>
+                        <GridViewColumn Header="Phone" DisplayMemberBinding="{Binding Customer.Phone}" Width="90"/>
+                        <GridViewColumn Header="Table" DisplayMemberBinding="{Binding Table.Name}" Width="70"/>
+                        <GridViewColumn Header="Order Date" DisplayMemberBinding="{Binding OrderDate}" Width="130"/>
+                        <GridViewColumn Header="Total Amount" DisplayMemberBinding="{Binding Total}" Width="100"/>
+                        <GridViewColumn Header="Account" DisplayMemberBinding="{Binding Account.FullName}" Width="150"/>
+                        <GridViewColumn Header="Actions" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="View Detail" Click="Btn_ViewOrder" Tag="{Binding OrderId}" 
+                                        Width="85" Height="25"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </Grid>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="10">
+            <Button x:Name="BtnBackMainWindow" Content="Back to Mainwindow" Click="BtnBackMainWindow_Click" Width="123" />
+        </StackPanel>
+    </Grid>
+</Window>
